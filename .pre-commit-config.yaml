@@ -1,0 +1,27 @@
+# Copyright (c) 2022 Robert Bosch GmbH and its subsidiaries. All rights reserved.
+
+minimum_pre_commit_version: "2.20.0"
+exclude: (^docs|^justdocs_sphinx)
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=5000']
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+        args: ["--unsafe"]
+      - id: end-of-file-fixer
+      - id: no-commit-to-branch # default: main, master
+      - id: trailing-whitespace
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.5.0
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+        args: ["--check"]
